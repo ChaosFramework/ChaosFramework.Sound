@@ -2,7 +2,6 @@ using ChaosFramework.Collections;
 using ChaosFramework.Collections.Immutable;
 using ChaosUtil.Primitives;
 using System.Linq;
-using SysCol = System.Collections.Generic;
 
 namespace ChaosFramework.Sound.Markers
 {
@@ -15,7 +14,7 @@ namespace ChaosFramework.Sound.Markers
 
         protected readonly ImmutableHashSet<string> targetNames;
 
-        public JumpToCuePoint(long position, SysCol.HashSet<string> targetNames)
+        public JumpToCuePoint(long position, ImmutableHashSet<string> targetNames)
             : base(position)
         {
             this.targetNames = targetNames;
@@ -55,11 +54,11 @@ namespace ChaosFramework.Sound.Markers
             long pos;
             return args.Length >= 2
                 && long.TryParse(args[0], out pos)
-                ? new JumpToCuePoint(pos, new SysCol.HashSet<string>(args.Skip(1).Select(ParseCuePointName)))
+                ? new JumpToCuePoint(pos, new ImmutableHashSet<string>(args.Skip(1).Select(ParseCuePointName)))
                 : null;
         }
 
-        public JumpToCuePoint(long position, SysCol.HashSet<string> targetNames)
+        public JumpToCuePoint(long position, ImmutableHashSet<string> targetNames)
             : base(position, targetNames)
         { }
 

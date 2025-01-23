@@ -1,6 +1,6 @@
+using ChaosFramework.Collections.Immutable;
 using ChaosUtil.Primitives;
 using System.Linq;
-using SysCol = System.Collections.Generic;
 
 namespace ChaosFramework.Sound.Markers
 {
@@ -16,13 +16,13 @@ namespace ChaosFramework.Sound.Markers
             return args.Length > 2
                 && long.TryParse(args[0], out pos)
                 && float.TryParse(args[1], out prob)
-                ? new ProbabilityJump(pos, prob, new SysCol.HashSet<string>(args.Skip(2).Select(ParseCuePointName)))
+                ? new ProbabilityJump(pos, prob, new ImmutableHashSet<string>(args.Skip(2).Select(ParseCuePointName)))
                 : null;
         }
 
         readonly float probability;
 
-        public ProbabilityJump(long position, float probability, SysCol.HashSet<string> targetNames)
+        public ProbabilityJump(long position, float probability, ImmutableHashSet<string> targetNames)
             : base(position, targetNames)
         {
             this.probability = probability;
