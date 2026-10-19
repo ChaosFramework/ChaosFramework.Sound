@@ -104,7 +104,9 @@ namespace ChaosFramework.Sound.Codex.Wave
                     offsets[header].Add(cursor);
                 }
                 else
-                    throw new InvalidDataException($"Unknown chunk tag in wave file:\n\ntag:\t{GetTagString((int)header)}");
+                {
+                    // ignore unknown chunk tags
+                }
 
                 cursor += (chunkLength + 1) / 2 * 2 + 8; // RIFF chunk lengths must be even
             }
